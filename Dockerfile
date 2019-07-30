@@ -6,3 +6,7 @@ RUN  apk add --update --no-cache bash autoconf  automake make cmake libtool biso
      ./bootstrap.sh && ./configure CFLAGS="-s -O2" CXXFLAGS="-s -O2"  --without-ruby --disable-tests --disable-debug --without-php_extension --without-python --without-haskell --without-java --without-perl --without-php --without-py3 --without-erlang && make && make install && \
      apk del --update --no-cache  autoconf  automake make cmake libtool bison flex  g++  gmp-dev libuv-dev openssl-dev   && \
      rm -rf /tmp/*
+
+COPY docker/bin/entrypoint.sh /usr/bin
+
+ENTRYPOINT ["entrypoint.sh"]
